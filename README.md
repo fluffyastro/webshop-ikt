@@ -6,9 +6,9 @@
 <br>
 <h2>Projekt készítői</h2>
 <ul>
-  <li><a href="https://github.com/kriszsuli">Chlebik Krisztofer Benjámin</a></li>
+  <li><a href="https://liba.lol">Chlebik Krisztofer Benjámin</a></li>
   <li><a href="https://github.com/KornelGa">Garaba Kornél</a></li>
-  <li><a href="https://github.com/fluffyastro">Nagy Álmos Botond</a></li>
+  <li><a href="https://astrowolf.hu">Nagy Álmos Botond</a></li>
 </ul><br><br><br><br><br>
 
 
@@ -21,7 +21,7 @@
 <br>
 <h2>Makers of this project</h2>
 <ul>
-  <li><a href="https://github.com/kriszsuli">Chlebik Krisztofer Benjámin</a></li>
+  <li><a href="https://liba.lol">Chlebik Krisztofer Benjámin</a></li>
   <li><a href="https://github.com/KornelGa">Garaba Kornél</a></li>
-  <li><a href="https://github.com/fluffyastro">Nagy Álmos Botond</a></li>
+  <li><a href="https://astrowolf.hu">Nagy Álmos Botond</a></li>
 </ul>
