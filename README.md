@@ -16,7 +16,7 @@
 <h1 align="center">🇺🇸 Webshop (ICT)</h1>
 <br>
 <h2>What is this project about?</h2>
-<h3>This entire repository is our compulsory webshop projekt for our ICT project class.</h3>
+<h3>This entire repository is our compulsory webshop project for our ICT project class.</h3>
 <br>
 <br>
 <h2>Makers of this project</h2>
