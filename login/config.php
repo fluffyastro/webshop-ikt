@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'login_system';
+$dbname = 'tbdshop';
 $username = 'root';
 $password = '';
 
