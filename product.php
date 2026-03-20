@@ -47,9 +47,9 @@
                     <p class="product-detail__description"><?= htmlspecialchars($product["description"]) ?></p>
                     <span class="product-detail__price"><?= number_format((int)$product["price"], 0, ',', ' ') ?> Ft</span>
 
-                    <button class="addToCart" data-id="<?= (int)$product["id"] ?>">
+                    <a class="addToCart" href="cart.php?action=add&id=<?= (int)$product["id"] ?>">
                         <i class="bx bx-cart-add"></i>Kosárba
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -55,19 +55,20 @@
         </form>
         <div class="products">
             <?php foreach ($products as $product): ?>
-                <a href="product.php?id=<?= (int)$product['id'] ?>">
-                    <div class="product">
-                        <img src="<?= htmlspecialchars($product["image_url"]) ?>">
-                        <div class="nemtom">
-                            <h2><?= htmlspecialchars($product["name"]) ?></h2>
-                            <p><?= substr(htmlspecialchars($product["description"], ENT_QUOTES, 'UTF-8'), 0, 120) . (strlen($product["description"]) > 120 ? "..." : "") ?></p>
-                            <span class="price"><?= number_format((int)$product["price"], 0, ',', ' ') ?> Ft</span>
-                            <button class="addToCart">
-                                <i class="bx bx-cart-add"></i>Kosárba
-                            </button>
-                        </div>
+                    <div class="product">            
+                        <a href="product.php?id=<?= (int)$product['id'] ?>">
+                            <img src="<?= htmlspecialchars($product["image_url"]) ?>">
+                            <div class="nemtom">
+                                <h2><?= htmlspecialchars($product["name"]) ?></h2>
+                                <p><?= substr(htmlspecialchars($product["description"], ENT_QUOTES, 'UTF-8'), 0, 120) . (strlen($product["description"]) > 120 ? "..." : "") ?></p>
+                                <span class="price"><?= number_format((int)$product["price"], 0, ',', ' ') ?> Ft</span>
+                                <a class="addToCart" href="cart.php?action=add&id=<?= (int)$product["id"] ?>">
+                                    <i class="bx bx-cart-add"></i>Kosárba
+                                </a>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                
             <?php endforeach; ?>
             <?php if (count($products) === 0): ?>
                 <p>Nincs találat a keresésre.</p>
