@@ -1,60 +1,83 @@
-<?php 
+<?php
 session_start();
-require 'config.php';
+require_once(__DIR__ . '/../helpers/config.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $identifier = trim($_POST['identifier']); // username or email
-    $password = $_POST['password'];
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../profile.php");
+    exit();
+}
 
-    // validálás
-    if (empty($identifier) || empty($password)) {
-        $error = "Minden mező kötelező!.";
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $identifier = trim($_POST['identifier'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($identifier === '' || $password === '') {
+        $error = "Minden mező kötelező!";
     } else {
-        // megnézi létezik-e a user
-        $stmt = $pdo->prepare("SELECT id, username, email, password_hash FROM users WHERE username = ? OR email = ?");
+        $stmt = $pdo->prepare(
+            "SELECT id, username, email, password FROM users WHERE username = ? OR email = ? LIMIT 1"
+        );
         $stmt->execute([$identifier, $identifier]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            $_SESSION['user_id'] = $user['id'];
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = (int)$user['id'];
             $_SESSION['username'] = $user['username'];
-            header("Location: ");
-            exit;
+            $_SESSION['email'] = $user['email'];
+
+            header("Location: ../profile.php");
+            exit();
         } else {
             $error = "Hibás felhasználónév/email vagy jelszó.";
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login for projektgeci</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="container">
         <div class="form-container">
             <h2>Bejelentkezés</h2>
-            <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
-            <?php if (isset($_GET['success'])) echo "<p class='success'>Regisztráció sikeres! Jelentkezz be!</p>"; ?>
-            <form method="POST">
+
+            <?php if ($error !== ''): ?>
+                <p class="error"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['success'])): ?>
+                <p class="success">Regisztráció sikeres! Jelentkezz be!</p>
+            <?php endif; ?>
+
+            <form method="POST" action="">
                 <div class="form-group">
                     <label for="identifier">Felhasználónév vagy Email</label>
                     <input type="text" id="identifier" name="identifier" required>
                 </div>
+
                 <div class="form-group">
                     <label for="password">Jelszó</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+
                 <button type="submit" class="btn">Bejelentkezés</button>
             </form>
+
             <div class="link">
                 <a href="register.php">Nincs fiókod? Regisztráció</a>
             </div>
+
+            <div class="link" style="margin-top:10px;">
+                <a href="../index.php">Vissza a főoldalra</a>
+            </div>
         </div>
+    </div>
 </body>
 </html>

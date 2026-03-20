@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once("helpers/db.php");
 
@@ -27,7 +27,7 @@ $stmt->close();
 <?php include_once("components/head.php") ?>
 <body>
 
-<?php 
+<?php
 include_once("components/navbar.php");
 include_once("components/hero.php");
 ?>
