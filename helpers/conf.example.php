@@ -5,4 +5,5 @@
     $username = "root";
     $password = "";
     $database = "tbdshop";
+    $STRIPE_SECRET_KEY = "sk_test_X";
 ?>
